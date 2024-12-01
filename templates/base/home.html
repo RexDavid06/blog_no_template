@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+.header {
+  padding: 2px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 50%;
+}
+
+
+
+
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>Rex's Blog</h2>
+  
+  <a href="{% url 'logout'%}">logout</a>
+  <a href="{% url 'profile'%}">View profile</a>
+</div>
+
+<div class="row">
+  <div style="float: right; margin-right: 200px ; margin-top: 70px;">
+   <form action="" method="post">
+    {% csrf_token %}
+  {{forms.as_p}}
+  <button style="background-color: darkcyan;">Post</button>
+     </form>
+
+  </div>
+  <div class="leftcolumn">
+   
+   {% for post in posts %}
+    <div class="card">
+      
+            <h2>{{post.title}}</h2>
+            <h5>{{post.date_posted}}</h5>
+            <p>{{post.content}}</p>
+            <h5>{{post.user}}'s post</h5>
+            <button><a href="{% url 'post_edit' post.id%}"  style="text-decoration: none; color: black;">Edit</a> </button>
+            <button style="background-color: rgb(228, 73, 73);"> <a href="{% url 'post_delete' post.id%}" style="text-decoration: none; color: black; " >Delete</a> </button>
+      
+    </div>
+    {% endfor %}
+  
+
+  </div>
+</div>
+
+</body>
+</html>

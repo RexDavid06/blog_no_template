@@ -1,0 +1,7 @@
+<h1>Profile</h1>
+<h1><a href="{% url 'home'%}">Home</a></h1>
+<a href="{% url 'profile_edit'%}">Edit Profile</a>
+
+<h4>Name: {{request.user}}</h4>
+<h5>Email: {{request.user.email}}</h5>
+<img class="img-thumbnail" src="{{ user.profile.image.url}}" alt="profile-img  ">

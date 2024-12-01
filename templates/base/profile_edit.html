@@ -1,0 +1,10 @@
+<a href="{% url 'profile'%}">Profile</a>
+
+
+<h1>Edit Post</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{u_form.as_p}}
+    {{p_form.as_p}}
+    <button>update</button>
+</form>
